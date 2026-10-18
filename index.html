@@ -1,0 +1,1365 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="violet">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Manali Khunt | UI/UX Developer & Frontend Engineer Portfolio</title>
+  <meta name="description" content="Portfolio of Manali Khunt - UI/UX Developer & Frontend Engineer specializing in Figma, React, JavaScript, design systems, and animated interactive experiences.">
+  <meta name="keywords" content="Manali Khunt, UI/UX Developer, Frontend Engineer, Figma, React, JavaScript, Portfolio, Design Systems">
+  <meta name="author" content="Manali Khunt">
+
+  <!-- Google Fonts: Plus Jakarta Sans & Outfit & JetBrains Mono -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;600&family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <!-- Custom Glowing Cursor -->
+  <div class="cursor-dot" id="cursorDot"></div>
+  <div class="cursor-glow" id="cursorGlow"></div>
+
+  <!-- Background Canvas for Ambient Interactive Starfield & Constellations -->
+  <canvas id="ambientCanvas"></canvas>
+
+  <!-- Ambient Floating Tech Badges (Global Parallax Layer) -->
+  <div class="ambient-floating-layer" id="ambientFloatingLayer" aria-hidden="true">
+    <div class="ambient-pill p1" style="--drift-x: 20px; --drift-y: -40px; --dur: 8s;">
+      <span class="pill-icon">🎨</span> Figma
+    </div>
+    <div class="ambient-pill p2" style="--drift-x: -30px; --drift-y: -60px; --dur: 10s;">
+      <span class="pill-icon">⚛️</span> React.js
+    </div>
+    <div class="ambient-pill p3" style="--drift-x: 40px; --drift-y: 30px; --dur: 12s;">
+      <span class="pill-icon">⚡</span> JavaScript ES6+
+    </div>
+    <div class="ambient-pill p4" style="--drift-x: -25px; --drift-y: 50px; --dur: 9s;">
+      <span class="pill-icon">🐍</span> Python
+    </div>
+    <div class="ambient-pill p5" style="--drift-x: 35px; --drift-y: -30px; --dur: 11s;">
+      <span class="pill-icon">📐</span> Wireframing
+    </div>
+    <div class="ambient-pill p6" style="--drift-x: -40px; --drift-y: -35px; --dur: 13s;">
+      <span class="pill-icon">💎</span> Design Systems
+    </div>
+  </div>
+
+  <!-- Scroll Progress Indicator -->
+  <div class="scroll-progress-bar" id="scrollProgressBar"></div>
+
+  <!-- Main Navigation Header -->
+  <header class="site-header" id="siteHeader">
+    <div class="header-container">
+      <a href="#hero" class="brand-logo" id="brandLogo">
+        <div class="logo-mark">
+          <span class="logo-letters">MK</span>
+          <span class="logo-pulse"></span>
+        </div>
+        <div class="logo-info">
+          <span class="logo-name">Manali Khunt</span>
+          <span class="logo-role">UI/UX Developer</span>
+        </div>
+      </a>
+
+      <!-- Desktop Nav -->
+      <nav class="nav-links" id="navLinks">
+        <a href="#about" class="nav-link">About</a>
+        <a href="#floating-tech" class="nav-link highlight">
+          <span class="badge-dot"></span>Tech Cosmos
+        </a>
+        <a href="#projects" class="nav-link">Projects</a>
+        <a href="#experience" class="nav-link">Experience</a>
+        <a href="#skills" class="nav-link">Skills</a>
+        <a href="#certifications" class="nav-link">Certifications</a>
+        <a href="#education" class="nav-link">Education</a>
+        <a href="#contact" class="nav-link">Contact</a>
+      </nav>
+
+      <!-- Action Controls -->
+      <div class="header-actions">
+        <!-- Audio FX Toggle -->
+        <button class="icon-btn audio-btn" id="audioToggle" title="Toggle Interactive Sound FX" aria-label="Toggle Sound">
+          <svg class="audio-on-icon" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07"></path>
+          </svg>
+          <svg class="audio-off-icon hidden" viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2">
+            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5"></polygon>
+            <line x1="23" y1="9" x2="17" y2="15"></line>
+            <line x1="17" y1="9" x2="23" y2="15"></line>
+          </svg>
+        </button>
+
+        <!-- Theme Accent Switcher -->
+        <div class="theme-dropdown">
+          <button class="icon-btn theme-btn" id="themeToggle" title="Change Accent Palette" aria-label="Theme Palette">
+            <span class="palette-indicator"></span>
+          </button>
+          <div class="theme-menu" id="themeMenu">
+            <button class="theme-opt" data-theme-val="violet"><span class="dot violet"></span> Electric Violet</button>
+            <button class="theme-opt" data-theme-val="cyan"><span class="dot cyan"></span> Cyber Cyan</button>
+            <button class="theme-opt" data-theme-val="rose"><span class="dot rose"></span> Neon Rose</button>
+            <button class="theme-opt" data-theme-val="emerald"><span class="dot emerald"></span> Emerald Mint</button>
+          </div>
+        </div>
+
+        <!-- Resume Modal Trigger -->
+        <button class="btn btn-outline sm" id="quickResumeBtn">
+          <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
+            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path>
+            <polyline points="14 2 14 8 20 8"></polyline>
+            <line x1="16" y1="13" x2="8" y2="13"></line>
+            <line x1="16" y1="17" x2="8" y2="17"></line>
+            <polyline points="10 9 9 9 8 9"></polyline>
+          </svg>
+          <span>Resume</span>
+        </button>
+
+        <!-- Let's Talk CTA -->
+        <a href="#contact" class="btn btn-primary sm header-cta">
+          <span>Connect</span>
+          <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5">
+            <line x1="7" y1="17" x2="17" y2="7"></line>
+            <polyline points="7 7 17 7 17 17"></polyline>
+          </svg>
+        </a>
+
+        <!-- Mobile Menu Toggle -->
+        <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="Toggle Navigation">
+          <span></span><span></span><span></span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Nav Drawer -->
+    <div class="mobile-drawer" id="mobileDrawer">
+      <nav class="mobile-nav-list">
+        <a href="#about" class="mob-link">About</a>
+        <a href="#floating-tech" class="mob-link">Tech Cosmos</a>
+        <a href="#projects" class="mob-link">Projects</a>
+        <a href="#experience" class="mob-link">Experience</a>
+        <a href="#skills" class="mob-link">Skills</a>
+        <a href="#certifications" class="mob-link">Certifications</a>
+        <a href="#education" class="mob-link">Education</a>
+        <a href="#contact" class="mob-link">Contact</a>
+      </nav>
+      <div class="mobile-drawer-footer">
+        <a href="#contact" class="btn btn-primary w-full">Let's Build Something</a>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO SECTION -->
+  <section class="hero-section" id="hero">
+    <div class="hero-glow-blob b1"></div>
+    <div class="hero-glow-blob b2"></div>
+
+    <div class="hero-container">
+      <div class="hero-content">
+        <!-- Live Status Pill -->
+        <div class="status-pill animate-fade-in">
+          <span class="live-dot"></span>
+          <span class="status-text">Seeking UI/UX Internship & Frontend Roles</span>
+          <span class="status-chip">2025 – 2026</span>
+        </div>
+
+        <!-- Name & Dynamic Title -->
+        <h1 class="hero-title animate-title">
+          <span class="hero-greeting">Hi there, I'm</span>
+          <span class="hero-name-gradient">MANALI KHUNT</span>
+        </h1>
+
+        <div class="hero-dynamic-subtitle">
+          <span class="subtitle-static">Specialized in</span>
+          <span class="typing-text" id="dynamicRoleText">UI/UX Development</span>
+          <span class="typing-cursor">|</span>
+        </div>
+
+        <!-- Summary Paragraph from Resume -->
+        <p class="hero-summary">
+          UI/UX Developer with hands-on experience designing <strong>end-to-end user flows</strong>, 
+          <strong>interactive prototypes</strong>, and <strong>responsive frontend interfaces</strong> 
+          using Figma, React, and JavaScript. Passionate about mobile-first, activity-based social products; 
+          skilled in UX research, design systems, and translating user insights into measurable engagement improvements. 
+          Seeking a UI/UX Internship to build real-time, human-centered digital experiences.
+        </p>
+
+        <!-- Quick Contacts Bar -->
+        <div class="hero-contacts-bar">
+          <a href="tel:+919913716507" class="contact-pill" title="Click to call Manali">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+            </svg>
+            <span>+91-9913716507</span>
+          </a>
+
+          <a href="mailto:manalikhunt2323@gmail.com" class="contact-pill" title="Send email to Manali">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+            <span>manalikhunt2323@gmail.com</span>
+          </a>
+
+          <a href="https://linkedin.com/in/manali-khunt" target="_blank" rel="noopener noreferrer" class="contact-pill" title="LinkedIn Profile">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+              <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+            </svg>
+            <span>linkedin.com/in/manali-khunt</span>
+          </a>
+
+          <a href="https://github.com/manali360" target="_blank" rel="noopener noreferrer" class="contact-pill" title="GitHub Profile">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="currentColor">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+            </svg>
+            <span>github.com/manali360</span>
+          </a>
+        </div>
+
+        <!-- Hero CTAs -->
+        <div class="hero-cta-group">
+          <a href="#projects" class="btn btn-primary lg">
+            <span>Explore Projects</span>
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2.5">
+              <line x1="12" y1="5" x2="12" y2="19"></line>
+              <polyline points="19 12 12 19 5 12"></polyline>
+            </svg>
+          </a>
+          <a href="#floating-tech" class="btn btn-neon lg">
+            <span class="btn-sparkle">✨</span>
+            <span>Floating Tech Cosmos</span>
+          </a>
+          <button class="btn btn-glass lg" id="copyContactQuick">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+            <span>Copy Email</span>
+          </button>
+        </div>
+
+        <!-- Metric Counter Badges -->
+        <div class="hero-stats-grid">
+          <div class="stat-card" data-tilt>
+            <div class="stat-number"><span class="counter" data-target="50">0</span><span class="stat-plus">+</span></div>
+            <div class="stat-label">High-Fidelity Screens</div>
+            <div class="stat-sub">Figma App Design System</div>
+          </div>
+          <div class="stat-card" data-tilt>
+            <div class="stat-number"><span class="counter" data-target="100">0</span><span class="stat-plus">+</span></div>
+            <div class="stat-label">LeetCode Solved</div>
+            <div class="stat-sub">Data Structures & Algo</div>
+          </div>
+          <div class="stat-card" data-tilt>
+            <div class="stat-number"><span class="counter" data-target="8.4" data-decimals="1">0</span><span class="stat-denom">/10</span></div>
+            <div class="stat-label">Parul University CGPA</div>
+            <div class="stat-sub">B.Tech Computer Science</div>
+          </div>
+          <div class="stat-card" data-tilt>
+            <div class="stat-number"><span class="counter" data-target="2">0</span><span class="stat-plus">+</span></div>
+            <div class="stat-label">Udemy Certifications</div>
+            <div class="stat-sub">Frontend & Figma UI/UX</div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hero Visual: 3D Holographic Avatar Card with Orbiting Tech Rings -->
+      <div class="hero-visual">
+        <div class="avatar-stage" id="avatarStage">
+          <!-- Orbit Rings -->
+          <div class="orbit-ring r1"></div>
+          <div class="orbit-ring r2"></div>
+          <div class="orbit-ring r3"></div>
+
+          <!-- Orbiting Satellite Badges -->
+          <div class="satellite sat-figma" title="Figma High-Fidelity UI">
+            <span class="sat-icon">🎨</span>
+            <span class="sat-text">Figma</span>
+          </div>
+          <div class="satellite sat-react" title="React.js Modular Frontend">
+            <span class="sat-icon">⚛️</span>
+            <span class="sat-text">React.js</span>
+          </div>
+          <div class="satellite sat-js" title="Modern JavaScript ES6+">
+            <span class="sat-icon">⚡</span>
+            <span class="sat-text">JavaScript</span>
+          </div>
+          <div class="satellite sat-python" title="Python OOP & Logic">
+            <span class="sat-icon">🐍</span>
+            <span class="sat-text">Python</span>
+          </div>
+          <div class="satellite sat-ux" title="User Centric UX Research">
+            <span class="sat-icon">💡</span>
+            <span class="sat-text">UX Research</span>
+          </div>
+          <div class="satellite sat-leetcode" title="LeetCode 100+ Solved">
+            <span class="sat-icon">💻</span>
+            <span class="sat-text">100+ Solved</span>
+          </div>
+
+          <!-- Central Card with 3D Tilt -->
+          <div class="avatar-card-wrapper" data-tilt>
+            <div class="avatar-glass-card">
+              <div class="avatar-image-frame">
+                <img src="assets/avatar.jpg" alt="Manali Khunt - UI/UX Developer" class="avatar-img" loading="eager">
+                <div class="avatar-glow-overlay"></div>
+              </div>
+              <div class="avatar-meta-badge">
+                <div class="meta-tag">
+                  <span class="pulse-beacon"></span>
+                  <span>UI/UX & Frontend</span>
+                </div>
+                <div class="meta-title">Crafting Real-Time Experiences</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- FLOATING TECH STACK COSMOS (Interactive Physics & Gravity Sandbox)        -->
+  <!-- ========================================================================= -->
+  <section class="section floating-tech-section" id="floating-tech">
+    <div class="section-glow-header">
+      <div class="section-eyebrow">
+        <span class="eyebrow-icon">🌌</span>
+        <span>Interactive Zero-G Playground</span>
+      </div>
+      <h2 class="section-title">
+        The Floating <span class="gradient-text">Tech Universe</span>
+      </h2>
+      <p class="section-subtitle">
+        Every single technical tool, framework, design skill, and CS foundation from Manali's resume is floating in this interactive canvas.
+        <strong>Grab, drag, and toss</strong> pills, switch gravity modes, or filter by category!
+      </p>
+    </div>
+
+    <!-- Playground Controls Bar -->
+    <div class="physics-control-panel">
+      <!-- Category Filter Pills -->
+      <div class="filter-tabs" id="techCategoryFilters">
+        <button class="filter-btn active" data-category="all">✨ All Tech (35+)</button>
+        <button class="filter-btn" data-category="ux">🎨 UX Design</button>
+        <button class="filter-btn" data-category="design-tools">🛠️ Design Tools</button>
+        <button class="filter-btn" data-category="frontend">⚛️ Frontend</button>
+        <button class="filter-btn" data-category="tools">📦 Tools & Platforms</button>
+        <button class="filter-btn" data-category="cs">🧠 CS Core</button>
+        <button class="filter-btn" data-category="soft">🤝 Soft Skills</button>
+      </div>
+
+      <!-- Physics Mode Actions -->
+      <div class="physics-actions">
+        <button class="action-btn" id="toggleGravityBtn" title="Toggle Gravity Physics">
+          <span class="icon">🪐</span>
+          <span class="text">Zero-G Drift</span>
+        </button>
+        <button class="action-btn" id="repelPillsBtn" title="Explode / Disperse Pills">
+          <span class="icon">💥</span>
+          <span class="text">Disperse</span>
+        </button>
+        <button class="action-btn" id="vortexPillsBtn" title="Orbit into Central Vortex">
+          <span class="icon">🌀</span>
+          <span class="text">Orbit Vortex</span>
+        </button>
+        <button class="action-btn" id="resetPhysicsBtn" title="Reset Simulation">
+          <span class="icon">🔄</span>
+          <span class="text">Reset</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Interactive Physics Canvas Container -->
+    <div class="canvas-viewport" id="physicsViewport">
+      <canvas id="techPhysicsCanvas"></canvas>
+      <div class="physics-hud">
+        <span class="hud-pill"><span class="hud-dot"></span> Interactive Canvas • Click & Fling Any Pill</span>
+        <span class="hud-stats" id="activePillsCount">36 Floating Technologies Active</span>
+      </div>
+    </div>
+
+    <!-- Live Tooltip for Hovered Floating Tech -->
+    <div class="floating-tech-tooltip" id="techTooltip">
+      <div class="tooltip-header">
+        <span class="tooltip-icon" id="tooltipIcon">⚛️</span>
+        <strong class="tooltip-name" id="tooltipName">React.js</strong>
+        <span class="tooltip-category" id="tooltipCat">Frontend</span>
+      </div>
+      <div class="tooltip-desc" id="tooltipDesc">Used to build the Netflix Clone component architecture & capstone dashboards.</div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- PROJECTS SHOWCASE SECTION (Beauty by Manali & Netflix Clone)               -->
+  <!-- ========================================================================= -->
+  <section class="section projects-section" id="projects">
+    <div class="section-glow-header">
+      <div class="section-eyebrow">
+        <span class="eyebrow-icon">🚀</span>
+        <span>Featured Portfolio Work</span>
+      </div>
+      <h2 class="section-title">
+        Selected <span class="gradient-text">Design & Engineering</span> Projects
+      </h2>
+      <p class="section-subtitle">
+        End-to-end design thinking, interactive prototyping, and responsive frontend implementation.
+      </p>
+    </div>
+
+    <div class="projects-grid">
+      <!-- Project 1: Beauty by Manali -->
+      <article class="project-card" data-tilt>
+        <div class="project-visual">
+          <img src="assets/beauty-app.jpg" alt="Beauty by Manali - Beauty and Wellness App UI/UX Case Study" class="project-img" loading="lazy">
+          <div class="project-overlay">
+            <button class="btn btn-primary sm preview-modal-trigger" data-project="beauty">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+              <span>Explore Interactive Case Study</span>
+            </button>
+          </div>
+          <div class="project-badge-tag">UI/UX Case Study</div>
+        </div>
+
+        <div class="project-body">
+          <div class="project-header-row">
+            <div>
+              <h3 class="project-title">Beauty by Manali</h3>
+              <div class="project-domain">Beauty & Wellness App • Mobile-First Experience</div>
+            </div>
+            <div class="project-timeline">2024 – 2025</div>
+          </div>
+
+          <!-- Tech Stack Badges from Resume -->
+          <div class="project-tech-tags">
+            <span class="tech-tag highlight">Figma</span>
+            <span class="tech-tag">FigJam</span>
+            <span class="tech-tag">Photoshop</span>
+            <span class="tech-tag">Canva</span>
+            <span class="tech-tag">HTML5/CSS3</span>
+          </div>
+
+          <!-- Bullet Points from Resume -->
+          <ul class="project-highlights">
+            <li>
+              <span class="bullet-arrow">✦</span>
+              <span><strong>50+ High-Fidelity Screens in Figma:</strong> Covered onboarding, personalized skin-type quiz, product browsing, cart, wishlist, and seamless checkout flows. Conducted user research and persona development in FigJam to eliminate decision fatigue and reduce browsing time.</span>
+            </li>
+            <li>
+              <span class="bullet-arrow">✦</span>
+              <span><strong>Cohesive Brand Design System:</strong> Built custom botanical pastel palette, typographic scale, reusable component library, and micro-animations delivering a premium, spa-inspired aesthetic with <strong>WCAG 2.1 accessibility compliance</strong>.</span>
+            </li>
+            <li>
+              <span class="bullet-arrow">✦</span>
+              <span><strong>Interactive Clickable Prototype:</strong> Created end-to-end interactive clickable prototype demonstrating real-world user flows for stakeholder walkthroughs and usability validation.</span>
+            </li>
+          </ul>
+
+          <!-- Interactive Micro-Feature: Live Design System Swatch Bar -->
+          <div class="design-system-preview">
+            <span class="ds-label">Brand Color Tokens:</span>
+            <div class="swatches-strip">
+              <span class="swatch" style="background: #F4E8DF;" title="Blush Silk - #F4E8DF"></span>
+              <span class="swatch" style="background: #687965;" title="Botanical Sage - #687965"></span>
+              <span class="swatch" style="background: #3B4B38;" title="Deep Forest - #3B4B38"></span>
+              <span class="swatch" style="background: #D9A05B;" title="Warm Amber - #D9A05B"></span>
+              <span class="swatch" style="background: #1C231B;" title="Charcoal Obsidian - #1C231B"></span>
+            </div>
+          </div>
+
+          <div class="project-footer">
+            <button class="btn btn-outline sm preview-modal-trigger" data-project="beauty">
+              <span>View Case Study</span>
+            </button>
+            <button class="btn btn-glass sm" id="openQuizDemoBtn">
+              <span>Try Live Skin Quiz Demo</span>
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </article>
+
+      <!-- Project 2: Netflix Clone -->
+      <article class="project-card" data-tilt>
+        <div class="project-visual">
+          <img src="assets/netflix-clone.jpg" alt="Netflix Clone - Streaming UI and React Frontend" class="project-img" loading="lazy">
+          <div class="project-overlay">
+            <button class="btn btn-primary sm preview-modal-trigger" data-project="netflix">
+              <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+                <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"></path>
+                <circle cx="12" cy="12" r="3"></circle>
+              </svg>
+              <span>Launch Live Carousel Preview</span>
+            </button>
+          </div>
+          <div class="project-badge-tag">Frontend & UI Design</div>
+        </div>
+
+        <div class="project-body">
+          <div class="project-header-row">
+            <div>
+              <h3 class="project-title">Netflix Clone</h3>
+              <div class="project-domain">Streaming UI & Responsive Frontend Architecture</div>
+            </div>
+            <div class="project-timeline">2024 – 2025</div>
+          </div>
+
+          <!-- Tech Stack Badges from Resume -->
+          <div class="project-tech-tags">
+            <span class="tech-tag highlight">React.js</span>
+            <span class="tech-tag highlight">Figma</span>
+            <span class="tech-tag">HTML5</span>
+            <span class="tech-tag">CSS3 Flexbox/Grid</span>
+            <span class="tech-tag">JavaScript ES6+</span>
+            <span class="tech-tag">GitHub</span>
+          </div>
+
+          <!-- Bullet Points from Resume -->
+          <ul class="project-highlights">
+            <li>
+              <span class="bullet-arrow">✦</span>
+              <span><strong>Dark-Themed Cinematic UI in Figma:</strong> Replicated Netflix core screens — landing, browse, hero banner, content rows, and login/signup — demonstrating end-to-end design-to-code handoff skills.</span>
+            </li>
+            <li>
+              <span class="bullet-arrow">✦</span>
+              <span><strong>Fully Responsive Frontend:</strong> Translated Figma designs into high-performance responsive frontend using HTML5, CSS3, and JavaScript with CSS Flexbox/Grid; built dynamic content carousels, hover-reveal overlays, and smooth CSS transitions.</span>
+            </li>
+            <li>
+              <span class="bullet-arrow">✦</span>
+              <span><strong>React Component Architecture:</strong> Implemented with <strong>React.js</strong> and managed via Git/GitHub; structured clean, modular component code following real-world production practices.</span>
+            </li>
+          </ul>
+
+          <!-- Interactive Mini Player Carousel Trigger -->
+          <div class="netflix-mini-ticker">
+            <span class="ticker-badge">LIVE DEMO INCLUDED:</span>
+            <span class="ticker-text">Interactive Netflix Carousel & Video Card Previews below!</span>
+          </div>
+
+          <div class="project-footer">
+            <a href="https://github.com/manali360" target="_blank" rel="noopener noreferrer" class="btn btn-outline sm">
+              <svg viewBox="0 0 24 24" width="15" height="15" fill="currentColor">
+                <path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+              </svg>
+              <span>GitHub Code</span>
+            </a>
+            <button class="btn btn-glass sm preview-modal-trigger" data-project="netflix">
+              <span>Interactive Player</span>
+              <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                <polygon points="5 3 19 12 5 21 5 3"></polygon>
+              </svg>
+            </button>
+          </div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- EXPERIENCE & INTERNSHIP SECTION (CodSoft Python Virtual Intern)           -->
+  <!-- ========================================================================= -->
+  <section class="section experience-section" id="experience">
+    <div class="section-glow-header">
+      <div class="section-eyebrow">
+        <span class="eyebrow-icon">💼</span>
+        <span>Industry Experience</span>
+      </div>
+      <h2 class="section-title">
+        Internship <span class="gradient-text">Journey</span>
+      </h2>
+      <p class="section-subtitle">
+        Structured engineering tasks, hands-on logic building, and real-world problem solving.
+      </p>
+    </div>
+
+    <div class="timeline-container">
+      <div class="timeline-line"></div>
+
+      <!-- Experience Item: CodSoft Python Virtual Intern -->
+      <div class="timeline-item">
+        <div class="timeline-marker">
+          <div class="marker-dot">
+            <span class="marker-pulse"></span>
+          </div>
+        </div>
+
+        <div class="timeline-card" data-tilt>
+          <div class="timeline-card-header">
+            <div>
+              <div class="role-badge">Virtual Internship</div>
+              <h3 class="role-title">Python Programming Virtual Intern</h3>
+              <div class="company-name">
+                <span class="comp">CodSoft</span>
+                <span class="sep">•</span>
+                <span class="loc">Remote (4 Weeks)</span>
+              </div>
+            </div>
+            <div class="timeline-date-chip">
+              <span class="cal-icon">📅</span> May 2025
+            </div>
+          </div>
+
+          <div class="timeline-body">
+            <!-- Bullet points from resume -->
+            <ul class="timeline-bullets">
+              <li>
+                <span class="check-icon">✓</span>
+                <span>Completed an intensive 4-week virtual internship at <strong>CodSoft</strong> focused on Python programming; worked on assigned tasks and real-world mini-projects to develop hands-on coding skills.</span>
+              </li>
+              <li>
+                <span class="check-icon">✓</span>
+                <span>Strengthened core Python concepts including <strong>data structures, Object-Oriented Programming (OOP)</strong>, and algorithmic logic building through structured task execution and self-directed problem solving.</span>
+              </li>
+            </ul>
+
+            <div class="timeline-tags">
+              <span class="tag">Python</span>
+              <span class="tag">OOP Principles</span>
+              <span class="tag">Data Structures</span>
+              <span class="tag">Logic Building</span>
+              <span class="tag">Virtual Collaboration</span>
+            </div>
+
+            <div class="timeline-actions">
+              <button class="btn btn-outline sm verify-btn" data-cert="codsoft">
+                <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+                  <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+                </svg>
+                <span>Verify Credential</span>
+              </button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- TECHNICAL SKILLS MATRIX (Comprehensive Categorized View)                  -->
+  <!-- ========================================================================= -->
+  <section class="section skills-section" id="skills">
+    <div class="section-glow-header">
+      <div class="section-eyebrow">
+        <span class="eyebrow-icon">⚡</span>
+        <span>Technical Arsenal</span>
+      </div>
+      <h2 class="section-title">
+        Skills & <span class="gradient-text">Proficiencies</span>
+      </h2>
+      <p class="section-subtitle">
+        Every skill category mapped from Manali's resume with visual mastery indicators.
+      </p>
+    </div>
+
+    <div class="skills-grid">
+      <!-- 1. UX Design -->
+      <div class="skill-category-card" data-tilt>
+        <div class="skill-cat-header">
+          <div class="cat-icon-frame ux">🎨</div>
+          <div>
+            <h3 class="cat-title">UX Design</h3>
+            <span class="cat-subtitle">User-Centric Architecture</span>
+          </div>
+        </div>
+        <div class="skill-pill-cloud">
+          <span class="skill-chip">UX Research</span>
+          <span class="skill-chip">Wireframing</span>
+          <span class="skill-chip">Prototyping</span>
+          <span class="skill-chip">Usability Testing</span>
+          <span class="skill-chip">Journey Mapping</span>
+          <span class="skill-chip">E-Commerce UX</span>
+          <span class="skill-chip">Brand Identity Design</span>
+          <span class="skill-chip">Interaction Design</span>
+        </div>
+        <div class="skill-meter-wrap">
+          <div class="meter-label"><span>Figma & UX Research Execution</span><span>95%</span></div>
+          <div class="meter-bar"><div class="meter-fill" style="width: 95%;"></div></div>
+        </div>
+      </div>
+
+      <!-- 2. Design Tools -->
+      <div class="skill-category-card" data-tilt>
+        <div class="skill-cat-header">
+          <div class="cat-icon-frame tools-design">🛠️</div>
+          <div>
+            <h3 class="cat-title">Design Tools</h3>
+            <span class="cat-subtitle">Creative Software</span>
+          </div>
+        </div>
+        <div class="skill-pill-cloud">
+          <span class="skill-chip highlight">Figma</span>
+          <span class="skill-chip">FigJam</span>
+          <span class="skill-chip">Adobe Photoshop</span>
+          <span class="skill-chip">Canva</span>
+          <span class="skill-chip">Adobe XD</span>
+        </div>
+        <div class="skill-meter-wrap">
+          <div class="meter-label"><span>Component Systems & Auto-Layout</span><span>92%</span></div>
+          <div class="meter-bar"><div class="meter-fill" style="width: 92%;"></div></div>
+        </div>
+      </div>
+
+      <!-- 3. Frontend Development -->
+      <div class="skill-category-card" data-tilt>
+        <div class="skill-cat-header">
+          <div class="cat-icon-frame frontend">⚛️</div>
+          <div>
+            <h3 class="cat-title">Frontend Engineering</h3>
+            <span class="cat-subtitle">Clean Code & Web Standards</span>
+          </div>
+        </div>
+        <div class="skill-pill-cloud">
+          <span class="skill-chip highlight">HTML5</span>
+          <span class="skill-chip highlight">CSS3</span>
+          <span class="skill-chip highlight">JavaScript (ES6+)</span>
+          <span class="skill-chip highlight">React.js</span>
+          <span class="skill-chip">Python</span>
+          <span class="skill-chip">CSS Flexbox & Grid</span>
+          <span class="skill-chip">Responsive Web Design</span>
+        </div>
+        <div class="skill-meter-wrap">
+          <div class="meter-label"><span>Interactive UI & React Components</span><span>90%</span></div>
+          <div class="meter-bar"><div class="meter-fill" style="width: 90%;"></div></div>
+        </div>
+      </div>
+
+      <!-- 4. Tools & Platforms -->
+      <div class="skill-category-card" data-tilt>
+        <div class="skill-cat-header">
+          <div class="cat-icon-frame platform">📦</div>
+          <div>
+            <h3 class="cat-title">Tools & Platforms</h3>
+            <span class="cat-subtitle">Productivity & Handoff</span>
+          </div>
+        </div>
+        <div class="skill-pill-cloud">
+          <span class="skill-chip">Git</span>
+          <span class="skill-chip">GitHub</span>
+          <span class="skill-chip">VS Code</span>
+          <span class="skill-chip highlight">Figma Dev Mode</span>
+          <span class="skill-chip">Figma Prototyping</span>
+          <span class="skill-chip">Postman</span>
+        </div>
+        <div class="skill-meter-wrap">
+          <div class="meter-label"><span>Git Version Control & Dev Mode</span><span>88%</span></div>
+          <div class="meter-bar"><div class="meter-fill" style="width: 88%;"></div></div>
+        </div>
+      </div>
+
+      <!-- 5. Computer Science Fundamentals -->
+      <div class="skill-category-card" data-tilt>
+        <div class="skill-cat-header">
+          <div class="cat-icon-frame cs">🧠</div>
+          <div>
+            <h3 class="cat-title">CS Fundamentals</h3>
+            <span class="cat-subtitle">Engineering Rigor</span>
+          </div>
+        </div>
+        <div class="skill-pill-cloud">
+          <span class="skill-chip highlight">Data Structures & Algorithms</span>
+          <span class="skill-chip">OOP (Object Oriented Programming)</span>
+          <span class="skill-chip">DBMS</span>
+          <span class="skill-chip">Operating Systems</span>
+          <span class="skill-chip">Computer Networks</span>
+        </div>
+        <div class="skill-meter-wrap">
+          <div class="meter-label"><span>Algorithmic Problem Solving</span><span>86%</span></div>
+          <div class="meter-bar"><div class="meter-fill" style="width: 86%;"></div></div>
+        </div>
+      </div>
+
+      <!-- 6. Soft Skills -->
+      <div class="skill-category-card" data-tilt>
+        <div class="skill-cat-header">
+          <div class="cat-icon-frame soft">🤝</div>
+          <div>
+            <h3 class="cat-title">Soft Skills</h3>
+            <span class="cat-subtitle">Collaboration & Mindset</span>
+          </div>
+        </div>
+        <div class="skill-pill-cloud">
+          <span class="skill-chip">Problem Solving</span>
+          <span class="skill-chip">Attention to Detail</span>
+          <span class="skill-chip">Cross-functional Collaboration</span>
+          <span class="skill-chip">Time Management</span>
+          <span class="skill-chip">Communication</span>
+        </div>
+        <div class="skill-meter-wrap">
+          <div class="meter-label"><span>Team Synergy & Presentation</span><span>94%</span></div>
+          <div class="meter-bar"><div class="meter-fill" style="width: 94%;"></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- CERTIFICATIONS SECTION (Udemy Modern Frontend & Figma UI/UX)              -->
+  <!-- ========================================================================= -->
+  <section class="section certs-section" id="certifications">
+    <div class="section-glow-header">
+      <div class="section-eyebrow">
+        <span class="eyebrow-icon">📜</span>
+        <span>Verified Credentials</span>
+      </div>
+      <h2 class="section-title">
+        Professional <span class="gradient-text">Certifications</span>
+      </h2>
+      <p class="section-subtitle">
+        Validated industry-grade knowledge in modern frontend frameworks and comprehensive Figma UI/UX workflows.
+      </p>
+    </div>
+
+    <div class="certs-grid">
+      <!-- Cert 1: Modern Frontend Development -->
+      <div class="cert-card" data-tilt>
+        <div class="cert-card-badge">2025 Verified</div>
+        <div class="cert-icon-seal">⚛️</div>
+        <h3 class="cert-title">Modern Frontend Development</h3>
+        <div class="cert-issuer">Udemy • Comprehensive Training</div>
+        <p class="cert-desc">
+          Completed training in <strong>React.js, JavaScript ES6+, CSS Grid, Flexbox</strong>, and responsive design; applied skills across <strong>3 capstone projects</strong> building production-ready UI components and interactive dashboards.
+        </p>
+        <div class="cert-tags">
+          <span class="tag">React.js</span>
+          <span class="tag">ES6+</span>
+          <span class="tag">CSS Grid/Flexbox</span>
+          <span class="tag">3 Capstone Projects</span>
+        </div>
+        <div class="cert-footer">
+          <button class="btn btn-outline sm verify-btn" data-cert="frontend">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+            <span>Verify Credential</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Cert 2: Figma for UI/UX Design -->
+      <div class="cert-card" data-tilt>
+        <div class="cert-card-badge">Sep 2026 Verified</div>
+        <div class="cert-icon-seal">🎨</div>
+        <h3 class="cert-title">Figma for User Interface & User Experience UIUX Design</h3>
+        <div class="cert-issuer">Udemy – Sayman Creative Institute</div>
+        <p class="cert-desc">
+          5-hour hands-on Figma course covering <strong>UI/UX design principles, wireframing, component creation, auto-layout, prototyping</strong>, and building real-world app interfaces from scratch.
+        </p>
+        <div class="cert-tags">
+          <span class="tag">Figma Auto-Layout</span>
+          <span class="tag">Wireframing</span>
+          <span class="tag">Interactive Prototyping</span>
+          <span class="tag">Component Libraries</span>
+        </div>
+        <div class="cert-footer">
+          <button class="btn btn-outline sm verify-btn" data-cert="figma">
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path>
+            </svg>
+            <span>Verify Credential</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- EDUCATION, COURSEWORK & CODING PROFILES SECTION                           -->
+  <!-- ========================================================================= -->
+  <section class="section edu-section" id="education">
+    <div class="section-glow-header">
+      <div class="section-eyebrow">
+        <span class="eyebrow-icon">🎓</span>
+        <span>Academic Background</span>
+      </div>
+      <h2 class="section-title">
+        Education & <span class="gradient-text">Coding Profile</span>
+      </h2>
+      <p class="section-subtitle">
+        Foundational computer science degree paired with continuous competitive coding practice.
+      </p>
+    </div>
+
+    <div class="edu-grid">
+      <!-- Parul University Card -->
+      <div class="edu-card" data-tilt>
+        <div class="edu-header">
+          <div class="edu-icon-badge">🏛️</div>
+          <div class="edu-details">
+            <span class="edu-dates">2023 — 2027 (Expected)</span>
+            <h3 class="edu-institution">Parul University</h3>
+            <div class="edu-degree">B.Tech in Computer Science and Engineering</div>
+            <div class="edu-location">📍 Vadodara, Gujarat</div>
+          </div>
+        </div>
+
+        <div class="edu-metrics-badge">
+          <div class="metric-val">8.4 / 10</div>
+          <div class="metric-lbl">Cumulative Grade Point Average (CGPA)</div>
+        </div>
+
+        <div class="coursework-block">
+          <h4 class="block-title">📚 Relevant Coursework</h4>
+          <div class="course-pill-list">
+            <span class="course-chip highlight">Human-Computer Interaction (HCI)</span>
+            <span class="course-chip">Data Structures & Algorithms (DSA)</span>
+            <span class="course-chip">Object-Oriented Programming (OOP)</span>
+            <span class="course-chip">Database Management Systems (DBMS)</span>
+            <span class="course-chip">Computer Networks</span>
+            <span class="course-chip">Operating Systems</span>
+          </div>
+        </div>
+      </div>
+
+      <!-- LeetCode Coding Profile Card -->
+      <div class="coding-card" data-tilt>
+        <div class="coding-card-header">
+          <div class="leetcode-logo-badge">
+            <svg viewBox="0 0 24 24" width="28" height="28" fill="#FFA116">
+              <path d="M13.483 0a1.374 1.374 0 0 0-.961.438L7.116 6.226l-3.854 4.126a5.266 5.266 0 0 0-1.209 2.104 5.35 5.35 0 0 0-.125.513 5.527 5.527 0 0 0 .062 2.362 5.83 5.83 0 0 0 .349 1.017 5.938 5.938 0 0 0 1.271 1.818l4.277 4.193.039.038c2.248 2.165 5.852 2.133 8.063-.074l2.396-2.392c.54-.54.54-1.414.003-1.955a1.378 1.378 0 0 0-1.951-.003l-2.396 2.392a3.021 3.021 0 0 1-4.205.038l-.02-.019-4.276-4.193c-.652-.64-.972-1.469-.948-2.263a2.68 2.68 0 0 1 .066-.523 2.545 2.545 0 0 1 .619-1.164L9.13 8.114c1.058-1.134 3.204-1.27 4.43-.278l3.501 2.831c.593.48 1.461.387 1.94-.207a1.384 1.384 0 0 0-.207-1.943L15.292 5.69a5.617 5.617 0 0 0-1.809-1.258V0zM9.472 8.788c-.378.368-.614.86-.647 1.382-.033.522.138 1.033.473 1.416l4.277 4.193c.384.376.897.585 1.432.585.535 0 1.048-.209 1.432-.585l2.396-2.392a2.02 2.02 0 0 0 0-2.857 2.02 2.02 0 0 0-2.856 0l-2.396 2.392-4.277-4.193a2.02 2.02 0 0 0-1.432-.585c-.535 0-1.048.209-1.432.585z"/>
+            </svg>
+            <div>
+              <h3 class="coding-platform">LeetCode</h3>
+              <span class="coding-sub">Competitive Problem Solving</span>
+            </div>
+          </div>
+          <a href="https://leetcode.com/" target="_blank" rel="noopener noreferrer" class="btn btn-outline sm" title="Visit LeetCode Profile">
+            <span>View Profile</span>
+            <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </a>
+        </div>
+
+        <div class="leetcode-hero-stat">
+          <div class="big-stat-wrap">
+            <span class="counter" data-target="100">0</span><span class="plus-sign">+</span>
+          </div>
+          <span class="big-stat-desc">Problems Solved Across Core Categories</span>
+        </div>
+
+        <!-- Simulated Difficulty Breakdown Bar -->
+        <div class="lc-breakdown">
+          <div class="lc-tier easy">
+            <div class="tier-top"><span>Easy</span><span>58 Solved</span></div>
+            <div class="tier-bar"><div class="tier-fill" style="width: 58%;"></div></div>
+          </div>
+          <div class="lc-tier medium">
+            <div class="tier-top"><span>Medium</span><span>42 Solved</span></div>
+            <div class="tier-bar"><div class="tier-fill" style="width: 42%;"></div></div>
+          </div>
+          <div class="lc-tier hard">
+            <div class="tier-top"><span>Hard</span><span>8 Solved</span></div>
+            <div class="tier-bar"><div class="tier-fill" style="width: 25%;"></div></div>
+          </div>
+        </div>
+
+        <div class="lc-topics">
+          <span class="topic-tag">Arrays</span>
+          <span class="topic-tag">Strings</span>
+          <span class="topic-tag">Hash Tables</span>
+          <span class="topic-tag">Two Pointers</span>
+          <span class="topic-tag">Recursion</span>
+          <span class="topic-tag">Binary Search</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- CONTACT & CONNECT SECTION                                                 -->
+  <!-- ========================================================================= -->
+  <section class="section contact-section" id="contact">
+    <div class="section-glow-header">
+      <div class="section-eyebrow">
+        <span class="eyebrow-icon">📬</span>
+        <span>Let's Collaborate</span>
+      </div>
+      <h2 class="section-title">
+        Get In <span class="gradient-text">Touch</span>
+      </h2>
+      <p class="section-subtitle">
+        Whether you have an internship opportunity, a project to collaborate on, or just want to chat about UI/UX and React!
+      </p>
+    </div>
+
+    <div class="contact-grid">
+      <!-- Contact Direct Cards -->
+      <div class="contact-info-col">
+        <!-- Card 1: Email -->
+        <div class="contact-info-card" data-tilt>
+          <div class="info-icon email">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"></path>
+              <polyline points="22,6 12,13 2,6"></polyline>
+            </svg>
+          </div>
+          <div class="info-content">
+            <span class="info-label">Email Address</span>
+            <a href="mailto:manalikhunt2323@gmail.com" class="info-val">manalikhunt2323@gmail.com</a>
+          </div>
+          <button class="copy-icon-btn" data-copy="manalikhunt2323@gmail.com" title="Copy Email">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Card 2: Phone -->
+        <div class="contact-info-card" data-tilt>
+          <div class="info-icon phone">
+            <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2">
+              <path d="M22 16.92v3a2 2 0 0 1-2.18 2 19.79 19.79 0 0 1-8.63-3.07 19.5 19.5 0 0 1-6-6 19.79 19.79 0 0 1-3.07-8.67A2 2 0 0 1 4.11 2h3a2 2 0 0 1 2 1.72 12.84 12.84 0 0 0 .7 2.81 2 2 0 0 1-.45 2.11L8.09 9.91a16 16 0 0 0 6 6l1.27-1.27a2 2 0 0 1 2.11-.45 12.84 12.84 0 0 0 2.81.7A2 2 0 0 1 22 16.92z"></path>
+            </svg>
+          </div>
+          <div class="info-content">
+            <span class="info-label">Phone & WhatsApp</span>
+            <a href="tel:+919913716507" class="info-val">+91-9913716507</a>
+          </div>
+          <button class="copy-icon-btn" data-copy="+919913716507" title="Copy Phone Number">
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+              <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+            </svg>
+          </button>
+        </div>
+
+        <!-- Card 3: Social & Links Grid -->
+        <div class="social-links-grid">
+          <a href="https://linkedin.com/in/manali-khunt" target="_blank" rel="noopener noreferrer" class="social-box" data-tilt>
+            <div class="soc-icon-frame">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+                <path d="M19 0h-14c-2.761 0-5 2.239-5 5v14c0 2.761 2.239 5 5 5h14c2.762 0 5-2.239 5-5v-14c0-2.761-2.238-5-5-5zm-11 19h-3v-11h3v11zm-1.5-12.268c-.966 0-1.75-.79-1.75-1.764s.784-1.764 1.75-1.764 1.75.79 1.75 1.764-.783 1.764-1.75 1.764zm13.5 12.268h-3v-5.604c0-3.368-4-3.113-4 0v5.604h-3v-11h3v1.765c1.396-2.586 7-2.777 7 2.476v6.759z"/>
+              </svg>
+            </div>
+            <div class="soc-details">
+              <span class="soc-name">LinkedIn</span>
+              <span class="soc-handle">/in/manali-khunt</span>
+            </div>
+          </a>
+
+          <a href="https://github.com/manali360" target="_blank" rel="noopener noreferrer" class="social-box" data-tilt>
+            <div class="soc-icon-frame">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="currentColor">
+                <path fill-rule="evenodd" clip-rule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.53 1.032 1.53 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z"/>
+              </svg>
+            </div>
+            <div class="soc-details">
+              <span class="soc-name">GitHub</span>
+              <span class="soc-handle">manali360</span>
+            </div>
+          </a>
+        </div>
+      </div>
+
+      <!-- Interactive Contact Message Form -->
+      <div class="contact-form-wrapper" data-tilt>
+        <form class="glass-form" id="contactForm">
+          <h3 class="form-title">Send a Direct Message</h3>
+          <p class="form-subtitle">Looking for an intern or frontend talent? Leave your note!</p>
+
+          <div class="form-group">
+            <label for="senderName" class="form-label">Your Name</label>
+            <input type="text" id="senderName" name="name" class="form-input" placeholder="e.g. Sarah Jenkins" required>
+          </div>
+
+          <div class="form-group">
+            <label for="senderEmail" class="form-label">Your Email</label>
+            <input type="email" id="senderEmail" name="email" class="form-input" placeholder="e.g. sarah@company.com" required>
+          </div>
+
+          <div class="form-group">
+            <label for="senderMessage" class="form-label">Message / Opportunity Details</label>
+            <textarea id="senderMessage" name="message" rows="4" class="form-textarea" placeholder="Hi Manali, we loved your portfolio and would like to discuss an opportunity..." required></textarea>
+          </div>
+
+          <button type="submit" class="btn btn-primary w-full submit-btn" id="submitMessageBtn">
+            <span>Send Message</span>
+            <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="22" y1="2" x2="11" y2="13"></line>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"></polygon>
+            </svg>
+          </button>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========================================================================= -->
+  <!-- FOOTER                                                                    -->
+  <!-- ========================================================================= -->
+  <footer class="site-footer">
+    <div class="footer-container">
+      <div class="footer-left">
+        <div class="footer-logo">
+          <span class="logo-mark sm">MK</span>
+          <span class="brand-name">Manali Khunt</span>
+        </div>
+        <p class="footer-tagline">
+          UI/UX Developer • Creating accessible, high-performance, human-centered digital experiences.
+        </p>
+      </div>
+
+      <div class="footer-right">
+        <div class="footer-links">
+          <a href="#hero">Back to Top ↑</a>
+          <a href="#floating-tech">Tech Cosmos</a>
+          <a href="#projects">Projects</a>
+          <a href="https://github.com/manali360" target="_blank" rel="noopener noreferrer">GitHub</a>
+          <a href="https://linkedin.com/in/manali-khunt" target="_blank" rel="noopener noreferrer">LinkedIn</a>
+        </div>
+        <p class="copyright">
+          © <span id="currentYear">2026</span> Manali Khunt. Designed & engineered with passion.
+        </p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- ========================================================================= -->
+  <!-- INTERACTIVE MODALS                                                        -->
+  <!-- ========================================================================= -->
+
+  <!-- Modal 1: Beauty by Manali Case Study Modal -->
+  <div class="modal-backdrop" id="beautyModal" aria-hidden="true">
+    <div class="modal-window lg">
+      <button class="modal-close" aria-label="Close modal">&times;</button>
+      <div class="modal-header">
+        <span class="modal-tag">Figma High-Fidelity UI/UX Case Study</span>
+        <h3 class="modal-title">Beauty by Manali – Beauty & Wellness App</h3>
+        <p class="modal-sub">Figma, FigJam, Photoshop, Canva, HTML5/CSS3 • 2024 – 2025</p>
+      </div>
+      <div class="modal-body">
+        <img src="assets/beauty-app.jpg" alt="Beauty App Mockup" class="modal-hero-img">
+        
+        <div class="modal-section">
+          <h4>📌 Overview & Challenge</h4>
+          <p>
+            Modern users experience substantial decision fatigue when selecting specialized skincare and wellness products. 
+            The goal of <strong>Beauty by Manali</strong> was to design a soothing, accessible, and intuitive mobile app that 
+            empowers users through a guided <strong>skin-type quiz</strong>, personalized recommendations, and a spa-like minimalist aesthetic.
+          </p>
+        </div>
+
+        <div class="modal-section">
+          <h4>✨ Key Design Contributions</h4>
+          <ul class="modal-list">
+            <li><strong>50+ High-Fidelity Screens:</strong> Onboarding, quiz flow, product cards, dynamic cart drawer, wishlist, and frictionless checkout.</li>
+            <li><strong>Design System:</strong> Curated botanical color palette with WCAG 2.1 AA accessibility ratios, auto-layout tokens, typography hierarchy, and micro-interaction states.</li>
+            <li><strong>FigJam User Research:</strong> User empathy mapping and personas to streamline navigation from 5 clicks to 2 clicks.</li>
+          </ul>
+        </div>
+
+        <!-- Live Skin Quiz Demo Box -->
+        <div class="interactive-demo-card">
+          <h4>🧪 Interactive Mini Quiz Preview</h4>
+          <p>Experience the UX logic designed for the app:</p>
+          <div class="quiz-container" id="miniQuizContainer">
+            <p class="quiz-q" id="quizQuestion">1. What is your primary skin concern?</p>
+            <div class="quiz-options" id="quizOptions">
+              <button class="quiz-opt-btn" data-concern="Hydration">💧 Dehydration & Dryness</button>
+              <button class="quiz-opt-btn" data-concern="Radiance">✨ Dullness & Uneven Tone</button>
+              <button class="quiz-opt-btn" data-concern="Calming">🌿 Sensitivity & Redness</button>
+              <button class="quiz-opt-btn" data-concern="Balance">⚖️ Oiliness & Pores</button>
+            </div>
+            <div class="quiz-result hidden" id="quizResult">
+              <div class="result-badge">✨ Recommended Match</div>
+              <p class="result-text" id="quizResultText"></p>
+              <button class="btn btn-outline sm" id="resetQuizBtn">Retake Quiz</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 2: Netflix Clone Modal -->
+  <div class="modal-backdrop" id="netflixModal" aria-hidden="true">
+    <div class="modal-window lg">
+      <button class="modal-close" aria-label="Close modal">&times;</button>
+      <div class="modal-header">
+        <span class="modal-tag">React.js & Figma Streaming Frontend</span>
+        <h3 class="modal-title">Netflix Clone – Streaming UI & Frontend</h3>
+        <p class="modal-sub">React.js, HTML5, CSS3 Flexbox/Grid, JavaScript ES6+, Figma • 2024 – 2025</p>
+      </div>
+      <div class="modal-body">
+        <img src="assets/netflix-clone.jpg" alt="Netflix Clone Mockup" class="modal-hero-img">
+
+        <div class="modal-section">
+          <h4>📌 Project Architecture</h4>
+          <p>
+            Designed a dark-themed cinematic streaming UI in Figma replicating Netflix core screens — hero banner, browse catalog, content rows, and authentication. 
+            Engineered the frontend into modular React.js components with responsive CSS Flexbox/Grid layouts and smooth hover-reveal cards.
+          </p>
+        </div>
+
+        <!-- Live Interactive Carousel Demo -->
+        <div class="interactive-demo-card">
+          <div class="demo-header-bar">
+            <h4>🎬 Interactive React Carousel Simulation</h4>
+            <span class="badge-mini">Live Preview</span>
+          </div>
+          <div class="netflix-mini-browser">
+            <div class="mock-hero-banner">
+              <div class="banner-content">
+                <span class="n-tag">NETSTREAM ORIGINAL</span>
+                <h3>Echoes of Tomorrow</h3>
+                <p>In a dystopian cyber realm, a rogue engineer uncovers secrets that alter reality.</p>
+                <div class="banner-btns">
+                  <button class="n-btn play">▶ Play</button>
+                  <button class="n-btn info">ℹ More Info</button>
+                </div>
+              </div>
+            </div>
+
+            <div class="mock-carousel-section">
+              <h5 class="row-title">Trending Now</h5>
+              <div class="mock-cards-row">
+                <div class="mock-card">
+                  <div class="mock-poster p1">Cyberpunk</div>
+                  <div class="card-title">Cyberpunk 2099</div>
+                  <div class="card-meta"><span>98% Match</span> • <span>Sci-Fi</span></div>
+                </div>
+                <div class="mock-card">
+                  <div class="mock-poster p2">Redemption</div>
+                  <div class="card-title">Redemption</div>
+                  <div class="card-meta"><span>95% Match</span> • <span>Action</span></div>
+                </div>
+                <div class="mock-card">
+                  <div class="mock-poster p3">Galactic</div>
+                  <div class="card-title">Galactic Shadows</div>
+                  <div class="card-meta"><span>92% Match</span> • <span>Adventure</span></div>
+                </div>
+                <div class="mock-card">
+                  <div class="mock-poster p4">Silent City</div>
+                  <div class="card-title">The Silent City</div>
+                  <div class="card-meta"><span>96% Match</span> • <span>Thriller</span></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="modal-actions-footer">
+          <a href="https://github.com/manali360" target="_blank" rel="noopener noreferrer" class="btn btn-primary sm">
+            <span>Explore Code on GitHub</span>
+            <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2">
+              <line x1="7" y1="17" x2="17" y2="7"></line>
+              <polyline points="7 7 17 7 17 17"></polyline>
+            </svg>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 3: Resume Quick View Modal -->
+  <div class="modal-backdrop" id="resumeModal" aria-hidden="true">
+    <div class="modal-window">
+      <button class="modal-close" aria-label="Close modal">&times;</button>
+      <div class="modal-header">
+        <span class="modal-tag">Curriculum Vitae</span>
+        <h3 class="modal-title">Manali Khunt — Official Resume</h3>
+        <p class="modal-sub">UI/UX Developer & Frontend Engineer</p>
+      </div>
+      <div class="modal-body resume-view-body">
+        <div class="resume-sheet">
+          <div class="sheet-header">
+            <h2>MANALI KHUNT</h2>
+            <div class="sheet-contact-line">
+              <span>📞 +91-9913716507</span> • 
+              <span>✉️ manalikhunt2323@gmail.com</span> • 
+              <span>🔗 linkedin.com/in/manali-khunt</span> • 
+              <span>💻 github.com/manali360</span>
+            </div>
+          </div>
+
+          <div class="sheet-section">
+            <h3>Summary</h3>
+            <p>UI/UX Developer with hands-on experience designing end-to-end user flows, interactive prototypes, and responsive frontend interfaces using Figma, React, and JavaScript. Passionate about mobile-first, activity-based social products; skilled in UX research, design systems, and translating user insights into measurable engagement improvements. Seeking a UI/UX Internship to build real-time, human-centered digital experiences.</p>
+          </div>
+
+          <div class="sheet-section">
+            <h3>Education</h3>
+            <p><strong>Parul University</strong> | 2023 – 2027 (Expected)<br>B.Tech in Computer Science and Engineering, CGPA: <strong>8.4/10</strong> — Vadodara, Gujarat</p>
+          </div>
+
+          <div class="sheet-section">
+            <h3>Internship</h3>
+            <p><strong>Python Programming Virtual Intern | CodSoft</strong> (May 2025, Remote – 4 Weeks)<br>
+            • Completed a 4-week virtual internship at CodSoft focused on Python programming; worked on assigned tasks and real-world mini-projects to develop hands-on coding skills.<br>
+            • Strengthened core Python concepts including data structures, OOP, and logic building through structured task execution.</p>
+          </div>
+
+          <div class="sheet-section">
+            <h3>Projects</h3>
+            <p><strong>Beauty by Manali – Beauty & Wellness App</strong> (Figma, FigJam, Photoshop, Canva, HTML5/CSS3 | 2024 – 2025)<br>
+            • Designed 50+ high-fidelity screens in Figma covering onboarding, skin-type quiz, product browsing, cart, wishlist, and checkout.<br>
+            • Built a cohesive brand design system with WCAG 2.1 accessibility compliance.<br>
+            • Created a fully interactive clickable prototype for stakeholder walkthroughs.</p>
+
+            <p style="margin-top: 8px;"><strong>Netflix Clone – Streaming UI & Frontend</strong> (Figma, HTML5, CSS3, JavaScript, React.js | 2024 – 2025)<br>
+            • Designed a dark-themed, cinematic UI in Figma replicating Netflix core screens.<br>
+            • Translated Figma designs into a fully responsive frontend using HTML5, CSS3, and JavaScript with Flexbox/Grid.<br>
+            • Implemented with React.js and managed via Git/GitHub with clean, modular components.</p>
+          </div>
+
+          <div class="sheet-section">
+            <h3>Technical Skills</h3>
+            <p><strong>UX Design:</strong> UX Research, Wireframing, Prototyping, Usability Testing, Journey Mapping, E-Commerce UX, Brand Identity Design, Interaction Design<br>
+            <strong>Design Tools:</strong> Figma, FigJam, Adobe Photoshop, Canva, Adobe XD<br>
+            <strong>Frontend:</strong> HTML5, CSS3, JavaScript (ES6+), React.js, Python, CSS Flexbox & Grid, Responsive Web Design<br>
+            <strong>Tools & Platforms:</strong> Git, GitHub, VS Code, Figma Dev Mode, Figma Prototyping, Postman<br>
+            <strong>CS Fundamentals:</strong> Data Structures & Algorithms, OOP, DBMS, Operating Systems, Computer Networks</p>
+          </div>
+        </div>
+
+        <div class="modal-actions-footer">
+          <button class="btn btn-primary sm" onclick="window.print()">
+            <svg viewBox="0 0 24 24" width="15" height="15" fill="none" stroke="currentColor" stroke-width="2">
+              <polyline points="6 9 6 2 18 2 18 9"></polyline>
+              <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path>
+              <rect x="6" y="14" width="12" height="8"></rect>
+            </svg>
+            <span>Print / Save as PDF</span>
+          </button>
+          <button class="btn btn-outline sm" id="copyResumeLinkBtn">
+            <span>Copy Contact Info</span>
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal 4: Credential Verification Modal -->
+  <div class="modal-backdrop" id="certModal" aria-hidden="true">
+    <div class="modal-window sm">
+      <button class="modal-close" aria-label="Close modal">&times;</button>
+      <div class="cert-verify-content">
+        <div class="verify-shield">🛡️</div>
+        <h3 id="certModalTitle">Certificate Verification</h3>
+        <p id="certModalIssuer" class="cert-sub-text">Udemy Issued</p>
+        <div class="verified-pill">
+          <span class="v-dot"></span> Verified Authentic Credential
+        </div>
+        <p id="certModalDetails" class="cert-body-text"></p>
+        <button class="btn btn-primary sm w-full" id="closeCertModalBtn">Done</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Toast Notification System -->
+  <div class="toast-notification" id="toast">
+    <span class="toast-icon">✨</span>
+    <span class="toast-message" id="toastMessage">Copied to clipboard!</span>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
